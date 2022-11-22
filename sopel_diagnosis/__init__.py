@@ -7,6 +7,7 @@ A silly Sopel plugin to diagnose your friends with random mental disorders.
 """
 from __future__ import unicode_literals, absolute_import, division, print_function
 
+import itertools
 import random
 
 from sopel import plugin
@@ -22,7 +23,7 @@ def hello_world(bot, trigger):
         patient = trigger.nick
 
     condition = random.choice(CONDITIONS)
-    verb_phrase = random.choice(VERB_PHRASES).format(patient=patient)
+    verb_phrase = next(VERB_PHRASES).format(patient=patient)
 
     bot.say(message.format(verb_phrase=verb_phrase, condition=condition))
 
@@ -203,8 +204,8 @@ CONDITIONS = DSM_AND_ICD_CONDITIONS + GAG_CONDITIONS
 del DSM_AND_ICD_CONDITIONS
 del GAG_CONDITIONS
 
-VERB_PHRASES = [
+VERB_PHRASES = itertools.cycle([
     'I have diagnosed {patient} with',
     '{patient} appears to suffer from',
     'It seems that {patient}\'s life is made difficult by',
-]
+])
