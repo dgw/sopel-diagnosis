@@ -1,11 +1,10 @@
-# coding=utf8
 """sopel-diagnosis
 
 A silly Sopel plugin to diagnose your friends with random mental disorders.
 
 (Just for fun! NOT medical advice.)
 """
-from __future__ import unicode_literals, absolute_import, division, print_function
+from __future__ import annotations
 
 import itertools
 import random
